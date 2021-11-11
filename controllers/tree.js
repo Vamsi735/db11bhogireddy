@@ -12,9 +12,17 @@ exports.tree_list = async function(req, res) {
     }   
 };   
  
-// for a specific tree. 
-exports.tree_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: tree detail: ' + req.params.id); 
+// VIEWS 
+// Handle a show all view 
+exports.tree_view_all_Page = async function(req, res) { 
+    try{ 
+        thetree = await tree.find(); 
+        res.render('tree', { title: 'tree Search Results', results: thetree }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
 }; 
  
 // Handle tree create on POST. 
@@ -30,4 +38,9 @@ exports.tree_delete = function(req, res) {
 // Handle tree update form on PUT. 
 exports.tree_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: tree update PUT' + req.params.id); 
+}; 
+
+// Handle tree update form on PUT. 
+exports.tree_detail = function(req, res) { 
+    res.send('NOT IMPLEMENTED: tree detail' + req.params.id); 
 }; 
