@@ -20,7 +20,8 @@ var resourceRouter = require('./routes/resource');
 
 // We can seed the collection if needed on server start
 async function recreateDB(){
-  // Delete everything await monitor.deleteMany();
+  // Delete everything
+  await tree.deleteMany();
   let instance1 = new tree({tree_type:"neam", size:"1600 cm", age:"1000"});
   instance1.save( function(err,doc) {
   if(err) return console.error(err);
