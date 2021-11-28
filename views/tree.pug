@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  - let create = `dispatch(\"tree/create\")`
+  button.btn(class="btn-primary m1-1", onclick=create) Create
   h1= title
   p Welcome to the tree pug
   div(class="container-fluid")
@@ -12,8 +14,12 @@ block content
     div(class="row  m-1") 
       each item in tree 
        - let destination = `dispatch(\"/tree/update?id=${item._id}\")` 
+       - let detail=`dispatch(\"/tree/detail?id=${item._id}\")`
+       - let de=`dispatch(\"/tree/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") tree #{item.tree_type}(#{item.size}) is #{item.age}
             button.btn( class="btn-primary ml-1", onclick= destination) Update
+            button.btn( class="btn-secondary ml-2", onclick=detail ) Get Detail page
+            button.btn( class="btn-warning ml-2", onclick=de ) Delete
             
         script.                
             function buy(itemNo)
